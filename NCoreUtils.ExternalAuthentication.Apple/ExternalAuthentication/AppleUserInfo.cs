@@ -1,20 +1,14 @@
 namespace NCoreUtils.ExternalAuthentication;
 
-public class AppleUserInfo : IExternalUserInfo
+public class AppleUserInfo(string id, string email) : IExternalUserInfo
 {
     public string Provider => "apple";
 
-    public string Id { get; }
+    public string Id { get; } = id;
 
-    public string Email { get; }
+    public string Email { get; } = email;
 
-    public string FamilyName => string.Empty;
+    public string? FamilyName => default;
 
-    public string GivenName => string.Empty;
-
-    public AppleUserInfo(string id, string email)
-    {
-        Id = id;
-        Email = email;
-    }
+    public string? GivenName => default;
 }

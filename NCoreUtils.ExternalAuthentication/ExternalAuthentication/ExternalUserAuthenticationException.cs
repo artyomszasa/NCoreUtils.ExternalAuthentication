@@ -1,14 +1,17 @@
-using System;
 using System.Runtime.Serialization;
 
 namespace NCoreUtils.ExternalAuthentication;
 
+#if !NET8_0_OR_GREATER
 [Serializable]
+#endif
 public class ExternalUserAuthenticationException : Exception
 {
+#if !NET8_0_OR_GREATER
     protected ExternalUserAuthenticationException(SerializationInfo info, StreamingContext context)
         : base(info, context)
     { /* noop */ }
+ #endif
 
     public ExternalUserAuthenticationException() : base() { /* noop */ }
 

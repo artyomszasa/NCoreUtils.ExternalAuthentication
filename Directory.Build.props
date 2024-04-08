@@ -1,11 +1,16 @@
 <Project>
   <PropertyGroup>
-    <LangVersion>10.0</LangVersion>
+    <LangVersion>12.0</LangVersion>
     <Nullable>enable</Nullable>
-    <Version>6.0.0-beta05</Version>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Version>8.0.0-rc00</Version>
     <Fx3NugetVersion>3.1.6</Fx3NugetVersion>
     <Fx6NugetVersion>6.0.0</Fx6NugetVersion>
+    <Fx8NugetVersion>8.0.0</Fx8NugetVersion>
     <FxNugetVersion Condition=" '$(TargetFramework)' == 'net6.0' ">$(Fx6NugetVersion)</FxNugetVersion>
-    <FxNugetVersion Condition=" '$(TargetFramework)' != 'net6.0' ">$(Fx3NugetVersion)</FxNugetVersion>
+    <FxNugetVersion Condition=" '$(TargetFramework)' == 'net8.0' ">$(Fx8NugetVersion)</FxNugetVersion>
+    <FxNugetVersion Condition=" '$(FxNugetVersion)' == '' ">$(Fx3NugetVersion)</FxNugetVersion>
+    <IsTrimmable Condition="$([MSBuild]::IsTargetFrameworkCompatible('$(TargetFramework)', 'net6.0'))">true</IsTrimmable>
+    <IsAotCompatible Condition="$([MSBuild]::IsTargetFrameworkCompatible('$(TargetFramework)', 'net7.0'))">true</IsAotCompatible>
   </PropertyGroup>
 </Project>

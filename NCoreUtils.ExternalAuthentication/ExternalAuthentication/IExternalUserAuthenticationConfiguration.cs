@@ -1,13 +1,10 @@
-using System;
+namespace NCoreUtils.ExternalAuthentication;
 
-namespace NCoreUtils.ExternalAuthentication
+public interface IExternalUserAuthenticationConfiguration
 {
-    public interface IExternalUserAuthenticationConfiguration
-    {
-        Uri? UserInfoEndpoint { get; }
+    Uri? UserInfoEndpoint { get; }
 
-        string ClientId { get; }
+    string ClientId { get; }
 
-        string ClientSecret { get; }
-    }
+    string ClientSecret { get; }
 }

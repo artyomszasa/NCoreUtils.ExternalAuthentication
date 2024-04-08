@@ -1,10 +1,6 @@
-using System.Threading;
-using System.Threading.Tasks;
+namespace NCoreUtils.ExternalAuthentication;
 
-namespace NCoreUtils.ExternalAuthentication
+public interface IExternalUserInfoAccessor
 {
-    public interface IExternalUserInfoAccessor
-    {
-        Task<IExternalUserInfo> GetAsync(CancellationToken cancellationToken);
-    }
+    Task<IExternalUserInfo> GetAsync(CancellationToken cancellationToken);
 }

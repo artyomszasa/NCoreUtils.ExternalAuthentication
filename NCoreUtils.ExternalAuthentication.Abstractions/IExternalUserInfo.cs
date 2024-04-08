@@ -1,15 +1,14 @@
-namespace NCoreUtils
+namespace NCoreUtils;
+
+public interface IExternalUserInfo
 {
-    public interface IExternalUserInfo
-    {
-        string Provider { get; }
+    string Provider { get; }
 
-        string Id { get; }
+    string Id { get; }
 
-        string Email { get; }
+    string? Email { get; }
 
-        string FamilyName { get; }
+    string? FamilyName { get; }
 
-        string GivenName { get; }
-    }
+    string? GivenName { get; }
 }

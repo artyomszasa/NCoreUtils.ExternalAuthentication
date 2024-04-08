@@ -1,12 +1,10 @@
-using System.Collections.Generic;
-
 namespace NCoreUtils.ExternalAuthentication;
 
 public class AppleExternalUserAuthenticationConfiguration
     : ExternalUserAuthenticationConfiguration
     , IAppleExternalUserAuthenticationConfiguration
 {
-    public List<string> ValidAudiences { get; set; } = new();
+    public List<string> ValidAudiences { get; set; } = [];
 
     IReadOnlyList<string> IAppleExternalUserAuthenticationConfiguration.ValidAudiences => ValidAudiences;
 }

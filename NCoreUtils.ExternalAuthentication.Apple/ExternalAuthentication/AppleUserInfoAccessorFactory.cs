@@ -1,19 +1,15 @@
-using System.Net.Http;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 
 namespace NCoreUtils.ExternalAuthentication;
 
-public class AppleUserInfoAccessorFactory : ExternalUserInfoAccessorFactory
+public class AppleUserInfoAccessorFactory(
+    ILoggerFactory loggerFactory,
+    IOptionsMonitor<AppleExternalUserAuthenticationConfiguration> configurationOptions,
+    IHttpClientFactory? httpClientFactory)
+    : ExternalUserInfoAccessorFactory(ProviderName, loggerFactory, configurationOptions, httpClientFactory)
 {
     public new const string ProviderName = "apple";
-
-    public AppleUserInfoAccessorFactory(
-        ILoggerFactory loggerFactory,
-        IOptionsMonitor<AppleExternalUserAuthenticationConfiguration> configurationOptions,
-        IHttpClientFactory? httpClientFactory)
-        : base(ProviderName, loggerFactory, configurationOptions, httpClientFactory)
-    { }
 
     protected override IExternalUserInfoAccessor CreateAccessor(
         ILoggerFactory loggerFactory,

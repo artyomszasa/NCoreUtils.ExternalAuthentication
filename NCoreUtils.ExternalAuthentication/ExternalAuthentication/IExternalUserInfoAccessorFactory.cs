@@ -1,9 +1,8 @@
-namespace NCoreUtils.ExternalAuthentication
-{
-    public interface IExternalUserInfoAccessorFactory
-    {
-        string ProviderName { get; }
+namespace NCoreUtils.ExternalAuthentication;
 
-        IExternalUserInfoAccessor Create(string accessToken);
-    }
+public interface IExternalUserInfoAccessorFactory
+{
+    string ProviderName { get; }
+
+    IExternalUserInfoAccessor Create(string accessToken);
 }
