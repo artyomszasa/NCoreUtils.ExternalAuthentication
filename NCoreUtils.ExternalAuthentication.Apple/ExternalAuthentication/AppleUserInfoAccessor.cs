@@ -2,10 +2,6 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Net.Http.Json;
 using Microsoft.IdentityModel.Tokens;
 
-#if !NET6_0_OR_GREATER
-using System.Text.Json;
-#endif
-
 namespace NCoreUtils.ExternalAuthentication;
 
 public class AppleUserInfoAccessor : IExternalUserInfoAccessor
@@ -20,15 +16,8 @@ public class AppleUserInfoAccessor : IExternalUserInfoAccessor
 
     private static Task<IReadOnlyList<AppleKeyData>>? PendingKeys { get; set; }
 
-#if NET6_0_OR_GREATER
     private static Task<AppleKeysResponse?> GetKeysAsync(HttpClient client)
         => client.GetFromJsonAsync("https://appleid.apple.com/auth/keys", AppleKeysSerializerContext.Default.AppleKeysResponse);
-#else
-    private static JsonSerializerOptions JsonSerializerOptions { get; } = new JsonSerializerOptions();
-
-    private static Task<AppleKeysResponse?> GetKeysAsync(HttpClient client)
-        => client.GetFromJsonAsync<AppleKeysResponse>("https://appleid.apple.com/auth/keys", JsonSerializerOptions)!;
-#endif
 
     private static async Task<IReadOnlyList<AppleKeyData>> FetchAppleKeysAsync(IHttpClientFactory? httpClientFactory)
     {
